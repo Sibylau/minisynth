@@ -100,8 +100,8 @@ def z3_expr(tree, vars=None):
 
 if __name__ == '__main__':
     parser = lark.Lark(GRAMMAR)
-    slow_prog, vars1 = z3_expr(parser.parse("x % 1"))
-    fast_prog, vars2 = z3_expr(parser.parse("h1? x: (x - h2 * x) "), vars1)
+    slow_prog, vars1 = z3_expr(parser.parse("x % x"))
+    fast_prog, vars2 = z3_expr(parser.parse("h1? x: (x - h2 * x)"), vars1)
 
     print(fast_prog)
     plain_vars = {k: v for k, v in vars1.items()

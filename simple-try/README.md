@@ -1,0 +1,3 @@
+# A Simple Extension on a Z3 Synthesizer
+
+I added the modulo operator into the simple z3 synthesis solver. I wanted to let the synthesizer fill in the constants in the sketch `x - h1 * (x / h2)` equivalent to `x % 5`, in which `h1` and `h2` are supposed to be 5. But since the division (`/`) operator in the intepreter is not an integer division, z3 failed to find the corresponding model fo fill in the holes. I instead let the solver figure out an equivalence of the form `h1? x: (x - h2 * x)` for `x % x` which always evaluates to 0. The solver returns `[h2 = 1, h1 = 0]`.
